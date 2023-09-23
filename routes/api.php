@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Seller\SellerController;
+use App\Http\Controllers\User\UserController;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -31,12 +36,12 @@ Route::get('test', function (Request $request) {
     ], 200);
 });
 
-Route::fallback(function () {
-    return response()->json([
-        'msg' => 'error',
-        'code' => 404
-    ], 404);
-});
+//Route::fallback(function () {
+//    return response()->json([
+//        'msg' => 'error',
+//        'code' => 404
+//    ], 404);
+//});
 
 
 
@@ -45,37 +50,37 @@ Route::fallback(function () {
 /*
  * buyers
  */
-Route::resource('buyer', BuyerController::class)
+Route::resource('buyers', BuyerController::class)
     ->only(['index', 'show']);
 
 /*
  * categories
  */
-Route::resource('categories', \App\Http\Controllers\Category\CategoryController::class)
+Route::resource('categories',CategoryController::class)
     ->except(['create', 'edit']);
 
 /*
  * products
  */
-Route::resource('products', \App\Http\Controllers\Product\ProductController::class)
+Route::resource('products', ProductController::class)
     ->only(['index', 'show']);
 
 /*
  * sellers
  */
-Route::resource('sellers', \App\Http\Controllers\Seller\SellerController::class)
+Route::resource('sellers', SellerController::class)
     ->only(['index', 'show']);
 
 /*
  * transactions
  */
-Route::resource('transactions', \App\Models\Transaction::class)
+Route::resource('transactions', Transaction::class)
     ->only(['index', 'show']);
 
 /*
  * users
  */
-Route::resource('users', \App\Http\Controllers\User\UserController::class)
+Route::resource('users', UserController::class)
     ->except(['create', 'edit']);
 
 

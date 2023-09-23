@@ -21,7 +21,6 @@ class User extends Authenticatable
 
     protected $table = 'users';
     protected $dates = ['deleted_at'];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -46,6 +45,7 @@ class User extends Authenticatable
         'remember_token',
         'verification_token',
     ];
+
     /**
      * The attributes that should be cast.
      *
@@ -56,6 +56,20 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = strtolower($name);
+    }
+
+    public function getNameAttribute($name)
+    {
+        return ucwords($name);
+    }
+
+    public function setEmailAttribute($email)
+    {
+        $this->attributes['email'] = strtolower($email);
+    }
 
     public function isVerified()
     {
