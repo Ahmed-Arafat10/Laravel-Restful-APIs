@@ -53,7 +53,7 @@
   - mutators
   - accessors
   - `has()` method like `$buyer = Buyer::has('transactions')->findOrFail($id);`
-  - `isDirty()`
+  - `isDirty()` and `isClean()`
   - traits usage (when iam not able to extend from another class as this class already extends from another)
   - usage of `public function render($request, Throwable $e)` in `app/Exceptions/Handler`
   - `$modelName = class_basename($e->getModel()); // App\\Models\\User --> User`
@@ -84,3 +84,5 @@
   - `if ($request->has('name'))`
   - `Str::random(40);`
   - Global scope in Models
+  - ` $table->softDeletes();//deleted_at`
+  - `use SoftDeletes;` : to be able to use soft delete
