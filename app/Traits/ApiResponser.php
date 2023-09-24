@@ -17,6 +17,7 @@ trait ApiResponser
     {
         return response()->json(['error' => $msg, 'code' => $code], $code);
     }
+
     protected static function errorResponseS($msg, $code)
     {
         return response()->json(['error' => $msg, 'code' => $code], $code);
@@ -36,4 +37,26 @@ trait ApiResponser
     {
         return $this->successResponse(['data' => $model, 'code' => $code], $code);
     }
+
+    protected function transformData($data, $transformer)
+    {
+        $transformation = fractal($data, new $transformer);
+        return $transformation->toArray();
+    }
+
+    protected function showAllTransformer(Collection $collection, $code = 200)
+    {
+        if ($collection->isEmpty()) return $this->successResponse(['data' => $collection, 'code' => $code], $code);
+        $transformer = $collection->first()->transformer;
+        $collection = $this->transformData($collection, $transformer);
+        return $this->successResponse([$collection, 'code' => $code], $code);
+    }
+
+    protected function showOneTransformer(Model $model, $code = 200)
+    {
+        $transformer = $model->transformer;
+        $model = $this->transformData($model, $transformer);
+        return $this->successResponse([$model, 'code' => $code], $code);
+    }
+
 }

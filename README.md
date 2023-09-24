@@ -86,3 +86,5 @@
   - Global scope in Models
   - ` $table->softDeletes();//deleted_at`
   - `use SoftDeletes;` : to be able to use soft delete
+  - two types of middleware one that deals with a request & the other deals with response
+  - `laravel fractal` package (Transformers)
