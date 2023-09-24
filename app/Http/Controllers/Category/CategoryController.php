@@ -12,6 +12,12 @@ class CategoryController extends ApiController
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->middleware(['client.credentials'])->only(['index', 'show']);
+    }
+
     public function index()
     {
         $categories = Category::all();

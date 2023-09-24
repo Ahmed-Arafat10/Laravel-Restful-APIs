@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -161,7 +161,8 @@ return [
         /*
          * Package Service Providers...
          */
-            \Spatie\Fractal\FractalServiceProvider::class,
+        \Spatie\Fractal\FractalServiceProvider::class,
+        \Laravel\Passport\PassportServiceProvider::class,
         /*
          * Application Service Providers...
          */

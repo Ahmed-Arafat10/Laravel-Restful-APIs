@@ -12,6 +12,12 @@ use Illuminate\Validation\Rule;
 
 class UserController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware(['client.credentials'])->only(['index']);
+        $this->middleware(['auth:api'])->only(['show']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -37,7 +43,7 @@ class UserController extends ApiController
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails())
-            throw new customFormValidationException($validator,$request);
+            throw new customFormValidationException($validator, $request);
         //return $this->errorResponse($validator->getMessageBag(), 400);
 
 

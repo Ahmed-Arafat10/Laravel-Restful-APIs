@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Buyer\BuyerController;
+use Laravel\Passport\Http\Controllers\AccessTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +111,8 @@ Route::resource('users', UserController::class)
     ->except(['create', 'edit']);
 
 
+# now it will use middlewares -> signature/throttle/binding as it is defined in api.php (was defined in kernal.php)
+Route::post('oauth/token',[AccessTokenController::class,'issueToken']);
 
 # method #1
 //Route::middleware(['auth'])

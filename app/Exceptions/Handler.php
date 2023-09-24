@@ -3,12 +3,12 @@
 namespace App\Exceptions;
 
 use App\Traits\ApiResponser;
-use Couchbase\RateLimitedException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -45,7 +45,7 @@ class Handler extends ExceptionHandler
 //        if ($e instanceof customFormValidationException)
 //            return customFormValidationException::customValidationException($e, $request);
         #another way
-        if ($request->acceptsJson()) {
+        if (!$this->isWebBased($request)) {
             if ($e instanceof ValidationException)
                 return $this->customValidationException($e, $request);
             if ($e instanceof ModelNotFoundException) {
@@ -69,6 +69,9 @@ class Handler extends ExceptionHandler
                     return $this->errorResponse('Cannot delete this resource as it is related to another resource', 409);
                 return $this->errorResponse(['DBcode' => $errorCode, 'DBmsg' => $errorMsg], 409);
             }
+            if ($e instanceof TokenMismatchException)
+                return redirect()->back()->withInput($request->input());
+
             if (!config('app.debug')) # if debug mode is off (we are now in production)
                 return $this->errorResponse('Unexpected Exception. Try Later', 500); // 500: server error
 
@@ -83,5 +86,11 @@ class Handler extends ExceptionHandler
     {
         $errors = $e->validator->errors()->getMessages();
         return $this->errorResponse($errors, 422);
+    }
+
+    # to validate that it is a request from web not an API
+    private function isWebBased($request)
+    {
+        return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
     }
 }

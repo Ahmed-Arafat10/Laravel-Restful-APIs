@@ -53,6 +53,7 @@
   - mutators
   - accessors
   - `has()` method like `$buyer = Buyer::has('transactions')->findOrFail($id);`
+  - `whereHas()`
   - `isDirty()` and `isClean()`
   - traits usage (when iam not able to extend from another class as this class already extends from another)
   - usage of `public function render($request, Throwable $e)` in `app/Exceptions/Handler`
@@ -88,3 +89,8 @@
   - `use SoftDeletes;` : to be able to use soft delete
   - two types of middleware one that deals with a request & the other deals with response
   - `laravel fractal` package (Transformers)
+  - Method spoofing ( use `_method` as `PUT`, `PATCH` or `DELETE` while it is `POST`)
+  - `private function isWebBased($request)
+    {
+    return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
+    }`
