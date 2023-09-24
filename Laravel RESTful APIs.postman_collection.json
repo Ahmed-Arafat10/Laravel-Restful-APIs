@@ -1,0 +1,549 @@
+{
+	"info": {
+		"_postman_id": "9e8acf81-3ee4-4551-8a2c-faba046cb792",
+		"name": "Laravel RESTful APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29978609"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Ahmed",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ahmed3212@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234567",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "1234567",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZWRjMDliMDIzMTMwNDRlZmIxNTU2NTFiMDg5YjBkZmIzNGY2NDEyNGIzODVjNDE1ZDM1NDI5ZGU3NzgzYjMxYjJjYjRjOWZiZTlmNjgxM2MiLCJpYXQiOjE2OTU1NTEyOTguOTU4NTE0LCJuYmYiOjE2OTU1NTEyOTguOTU4NTE2LCJleHAiOjE2OTU1NTMwOTguOTI3MzQ4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.sz8uEZVlGX3SxUIWMl3thJmD-bClHxHzPykYA-wZRbzWxhkQJ5En0SWk4_lmgYvDWFGtO67w4rblooxSjAijoTptBWK6yc0xzWJFZUDJ0W5GXMGfXtbHJeJIi3QbpipA9P-SiUfpUzYKFhLvYGrUm5rDcXoB6bhKD7-xIpr8TJ5q7BmnJf_-nvAsLyYAXzr37AOSuN-OPmraRbFvstMXmHBOKe9sjT414fu0iJMCwO0pEdFlSF7leo5W9QrYCZs-Q6KaXUgo2o4jA9dxlniWoDYDHrQ12ET5rB8kO-Ym4UWGjcyLE_uqouCSfV-pKAWgLDoIoMxqU1v85INXCF3A58RzEnRl9YdJ0dor6JbfvAFMhQ28jjHjmIw60Ek5zVGvQ5fwH-XouSqCmLc-ckunHHQ6MXDHrkpzJnTzh-npx4HFivSj_RDpYgdgdw5UtjbinFuss5Uqx-Hv28PBAG5AnSyi36gfkGoKUJTCqOCUd-bcu7oYN8n1ha7qvQj5zF_5FWvsFzLw4WKmCtx4Y8j6xhYol8Y1eNtlPOVem9pqfkf_w6pS48ivWCV3zxI3ACYSJWhmAo2eHbXFFcuTUCzKWy4azOQBSx170a3LFzoLBGf8iIQyY4ZYWGa0mYae2fGyGpOfSZqMe6BK0oFlRCpTujqOrG-jWd7bbODAs9nnRrc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiNTc1MzZlZTE4MjUzNDczZjVkY2QzNjIwNzdjZDdkNmZkYTdmOGQ5MjVhNDAwM2E0MjAyNmM1NzA5ZWI2OTJjYzM5MjMxMjMzODMyMzNkNTMiLCJpYXQiOjE2OTU1NDkzNDYuNDM5Nzg0LCJuYmYiOjE2OTU1NDkzNDYuNDM5Nzg2LCJleHAiOjE2OTU1NTExNDYuMDM5MTM0LCJzdWIiOiIiLCJzY29wZXMiOltdfQ.hI23c6kY8AQsGzf9IdA0n-i_8fcT7_ShUErYQ2umy6rEHu5BZqq9bYUXk_kFarmv6Vwibuf27QV2qTGQjcSExz2tV9HN-jtgQJh8huiHCiRAg3xag6mwu54VO9NnUe3kVR0arTKWzLfTNhl350Nb_B4Jcg9o5BrQey30BWYqg3fNfH_dVAy6j2FtiZ6SVVa_fUIcP9IVbfIO3SfWJDF0auul76VuwLoB_PHKQCNZfuk8a6lSeFGUbz7YWOv4y4itPBiRnP9YOWSiJPUg3OBpnTkDD_ClAD6mHgTzhhPyaeoSe3IjW8Uv3uCYECsCc26hRGBkPRSPPvLO52VU1YMi216pVqVriJib_qkfRcnfO4_mFv5V2rhunuyv3CO5yIdZ3mkP5BbR1_ocE6cyd38YX60WdIBPg9iepdhw54ALpwwjxuiQZDIXwHgBsnACinR6ZS0ul-bsDCW2hYA2QDAo0T95RMERMHFt39MDFWy54msawbfvpD4xCtGOFAck63bB3pQQyYn-5A8HOKZl0zGlsDl98hR5h0lwkTFQ6M6AQd1jmgBtpPi--8k5wZNbWUmsYSGAwS84w1frNMc18taAfC2GaHsp2N9BvgvqxiInmrDqthkVZvHO_IfQJR4CNEcpq6tvdMl-ggKrVwMWuHJtbD5HS4_mHQ0CuGrPW44Bj-c",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show user by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/1222",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"1222"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\" : \"Ahmed New\",\r\n   \"email\" : \"ahmed122@gmail.com\",\r\n   \"password\" : \"1234567\",\r\n   \"password_confirmation\" : \"12345672\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/users/101",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"101"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Buyers",
+			"item": [
+				{
+					"name": "show all buyers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/buyers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"buyers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show a buyer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/buyers/101",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"buyers",
+								"101"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sellers",
+			"item": [
+				{
+					"name": "show all sellers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sellers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sellers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show a seller by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sellers/11",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sellers",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "show all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show a category by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store a category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Drinks\",\r\n    \"description\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/categories",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all  products of a category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/2/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								"2",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show sellers for specific category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/2/sellers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								"2",
+								"sellers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/2/transactions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								"2",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "show all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show a category by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "show all transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/transactions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show a transaction by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/transactions/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transactions",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get categories for a transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/transactions/2/categories",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transactions",
+								"2",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get categories for a transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/transactions/2/sellers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"transactions",
+								"2",
+								"sellers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OAuth",
+			"item": [
+				{
+					"name": "generate new access token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "ZeYbVQm5ntgStBlBfLE4IdWfiUcZ1i66GFPyZ5sx",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/oauth/token",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		}
+	]
+}
