@@ -58,9 +58,7 @@ Route::get('test', function (Request $request) {
 
 
 
-/*
- * buyers
- */
+# buyers
 Route::resource('buyers', BuyerController::class)
     ->only(['index', 'show']);
 Route::resource('buyers.transactions', BuyerTransactionController::class)
@@ -89,15 +87,11 @@ Route::resource('categories.buyers',CategoryBuyerController::class)
 Route::resource('products', ProductController::class)
     ->only(['index', 'show']);
 
-/*
- * sellers
- */
+# sellers
 Route::resource('sellers', SellerController::class)
     ->only(['index', 'show']);
 
-/*
- * transactions
- */
+# transactions
 Route::resource('transactions', TransactionController::class)
     ->only(['index', 'show']);
 Route::resource('transactions.categories',TransactionCategoryController::class)
