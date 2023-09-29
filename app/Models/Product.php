@@ -41,4 +41,14 @@ class Product extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public static function updateEvent()
+    {
+        Product::updated(function ($product) {
+            if (!$product->quantity && $product->isAvailable()) {
+                $product->status = Product::UNAVAILABLE_PRODUCT;
+                $product->save();
+            }
+        });
+    }
 }

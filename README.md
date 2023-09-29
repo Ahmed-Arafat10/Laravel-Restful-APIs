@@ -4,7 +4,7 @@
 | Method   | URI                                           | Action                                 |
 +----------+-----------------------------------------------+----------------------------------------+
 | GET      | buyers                                        | BuyerController@index                  |
- GET      | buyers/{buyer}                                | BuyerController@show                   |
+| GET      | buyers/{buyer}                                | BuyerController@show                   |
 | GET      | buyers/{buyer}/categories                     | BuyerCategoryController@index          |
 | GET      | buyers/{buyer}/products                       | BuyerProductController@index           |
 | GET      | buyers/{buyer}/sellers                        | BuyerSellerController@index            |
@@ -54,6 +54,7 @@
   - accessors
   - `has()` method like `$buyer = Buyer::has('transactions')->findOrFail($id);`
   - `whereHas()`
+  - `with()` : eager loading
   - `isDirty()` and `isClean()`
   - traits usage (when iam not able to extend from another class as this class already extends from another)
   - usage of `public function render($request, Throwable $e)` in `app/Exceptions/Handler`
@@ -94,3 +95,23 @@
     {
     return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
     }`
+  - New Factory & faker methods
+  - check seeder file
+  - `  return DB::transaction(function () use ($request, $product, $buyer) {
+    $product->quantity -= $request->quantity;
+    $product->save();
+    $transaction = Transaction::create([
+    'buyer_id' => $buyer->id,
+    'product_id' => $product->id,
+    'quantity' => $request->quantity
+    ]);
+    return $this->showOne($transaction, 201);
+    });`
+````php
+        # will add the relationship each time (even if the relationship already exists between both product & category)
+        $product->categories()->attach([$category->id]);
+        # will remove all relationship between that product & other categories then add the new one
+        $product->categories()->sync([$category->id]);
+        # will not remove all relationship between that product & other categories then add the new one
+        $product->categories()->syncWithoutDetaching([$category->id]);
+````
