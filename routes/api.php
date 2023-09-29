@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Buyer\BuyerCategoryController;
+use App\Http\Controllers\Buyer\BuyerController;
 use App\Http\Controllers\Buyer\BuyerProductController;
 use App\Http\Controllers\Buyer\BuyerSellerController;
 use App\Http\Controllers\Buyer\BuyerTransactionController;
@@ -10,16 +11,18 @@ use App\Http\Controllers\Category\CategoryProductController;
 use App\Http\Controllers\Category\CategorySellerController;
 use App\Http\Controllers\Category\CategoryTransactionController;
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Seller\SellerBuyerController;
+use App\Http\Controllers\Seller\SellerCategoryController;
 use App\Http\Controllers\Seller\SellerController;
+use App\Http\Controllers\Seller\SellerProductController;
+use App\Http\Controllers\Seller\SellerTransactionController;
 use App\Http\Controllers\Transaction\TransactionCategoryController;
 use App\Http\Controllers\Transaction\TransactionController;
 use App\Http\Controllers\Transaction\TransactionSellerController;
 use App\Http\Controllers\User\UserController;
-use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Buyer\BuyerController;
 use Laravel\Passport\Http\Controllers\AccessTokenController;
 
 /*
@@ -55,9 +58,6 @@ Route::get('test', function (Request $request) {
 //});
 
 
-
-
-
 # buyers
 Route::resource('buyers', BuyerController::class)
     ->only(['index', 'show']);
@@ -67,20 +67,20 @@ Route::resource('buyers.products', BuyerProductController::class)
     ->only(['index']);
 Route::resource('buyers.sellers', BuyerSellerController::class)
     ->only(['index']);
-Route::resource('buyers.categories',BuyerCategoryController::class)
+Route::resource('buyers.categories', BuyerCategoryController::class)
     ->only(['index']);
 
 
 # categories
-Route::resource('categories',CategoryController::class)
+Route::resource('categories', CategoryController::class)
     ->except(['create', 'edit']);
-Route::resource('categories.products',CategoryProductController::class)
+Route::resource('categories.products', CategoryProductController::class)
     ->only(['index']);
-Route::resource('categories.sellers',CategorySellerController::class)
+Route::resource('categories.sellers', CategorySellerController::class)
     ->only(['index']);
-Route::resource('categories.transactions',CategoryTransactionController::class)
+Route::resource('categories.transactions', CategoryTransactionController::class)
     ->only(['index']); // danger
-Route::resource('categories.buyers',CategoryBuyerController::class)
+Route::resource('categories.buyers', CategoryBuyerController::class)
     ->only(['index']);  // danger: search for it
 
 # products
@@ -90,13 +90,21 @@ Route::resource('products', ProductController::class)
 # sellers
 Route::resource('sellers', SellerController::class)
     ->only(['index', 'show']);
+Route::resource('sellers.transactions', SellerTransactionController::class)
+    ->only(['index']);
+Route::resource('sellers.categories', SellerCategoryController::class)
+    ->only(['index']);
+Route::resource('sellers.buyers', SellerBuyerController::class)
+    ->only(['index']);
+Route::resource('sellers.products', SellerProductController::class)
+    ->except(['create', 'show', 'edit']);
 
 # transactions
 Route::resource('transactions', TransactionController::class)
     ->only(['index', 'show']);
-Route::resource('transactions.categories',TransactionCategoryController::class)
+Route::resource('transactions.categories', TransactionCategoryController::class)
     ->only(['index']);
-Route::resource('transactions.sellers',TransactionSellerController::class)
+Route::resource('transactions.sellers', TransactionSellerController::class)
     ->only(['index']);
 /*
  * users
@@ -106,7 +114,7 @@ Route::resource('users', UserController::class)
 
 
 # now it will use middlewares -> signature/throttle/binding as it is defined in api.php (was defined in kernal.php)
-Route::post('oauth/token',[AccessTokenController::class,'issueToken']);
+Route::post('oauth/token', [AccessTokenController::class, 'issueToken']);
 
 # method #1
 //Route::middleware(['auth'])

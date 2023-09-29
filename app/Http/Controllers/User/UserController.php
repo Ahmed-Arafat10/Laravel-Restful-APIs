@@ -53,6 +53,7 @@ class UserController extends ApiController
         $data['verification_token'] = User::generateVerificationCode();
         $data['admin'] = User::REGULAR_USER;
         $user = User::create($data);
+
         return $this->showOne($user, 201);
     }
 
@@ -103,6 +104,7 @@ class UserController extends ApiController
             return $this->errorResponse('You have to specify a different values to update', 422);
 
         $user->save();
+
         return $this->showOne($user);
     }
 

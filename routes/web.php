@@ -28,4 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+
+Route::get('/test', function () {
+    $res = \App\Models\Category::findOrFail(1)
+        ->with('products')
+    ->get(); // danger: search for it
+    dd($res);
+});

@@ -58,5 +58,4 @@ trait ApiResponser
         $model = $this->transformData($model, $transformer);
         return $this->successResponse([$model, 'code' => $code], $code);
     }
-
 }

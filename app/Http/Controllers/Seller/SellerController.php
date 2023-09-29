@@ -21,7 +21,7 @@ class SellerController extends ApiController
      */
     public function show(Seller $seller)
     {
-        //$seller = Seller::has('products')->findOrFail($id); // transactions() is a method in Buyer model
+        $seller = Seller::has('products')->findOrFail($seller->id); // transactions() is a method in Buyer model
         return $this->showOne($seller);
     }
 }
