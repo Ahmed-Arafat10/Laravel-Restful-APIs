@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Mail\UseCreatedMail;
 use App\Transformers\UserTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -97,5 +98,10 @@ class User extends Authenticatable
         User::created(function ($user) {
             Mail::to($user)->send(new UseCreatedMail($user));
         });
+    }
+
+    public static function getAttributesArray(Model $model)
+    {
+        return $model->attributes;
     }
 }

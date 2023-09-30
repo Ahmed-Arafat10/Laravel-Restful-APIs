@@ -310,3 +310,89 @@ protected Model $Data;
     }
 ````
 
+- sort collection 
+````php
+    protected function sortData(Collection &$collection)
+    {
+        if (request()->has('sort_by')) {
+            $attribute = request()->sort_by;
+            $isDesc = request()->has('desc');
+            $collection = $collection->sortBy($attribute, null, $isDesc);
+        }
+        return $collection;
+    }
+````
+
+- filter collection something like `{{URL}}/users?verified=0`
+````php
+ protected function filterData(Collection &$collection)
+    {
+        $allowedAtt = User::getAttributesArray((new User())->find(1));
+        foreach (request()->query() as $att => $val) {
+            if (key_exists($att, $allowedAtt) && isset($val)) {
+                $collection = $collection->where($att, $val)->values();
+            }
+        }
+        return $collection;
+    }
+````
+
+
+- convert a collection into a paginate
+````php
+ protected function paginate(Collection &$collection)
+    {
+        $page = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 15;
+        $result = $collection->slice(($page - 1) * $perPage, $perPage)->values();
+        $paginated = new LengthAwareP\aginator($result, $collection->count(), $perPage, $page, [
+            'path' =>url()->current()
+        ]);
+        //$paginated->appends(request()->all());
+        $collection = $paginated;
+        return $paginated;
+
+    }
+````
+
+- you can also allow user to custom `per_page` number with some restrictions
+````php
+protected function paginate(Collection &$collection)
+    {
+        $rules = [
+            'per_page' => 'integer|min:2|max:50'
+        ];
+        $validator = Validator::make(request()->all(), $rules);
+        if ($validator->fails())
+            return $this->errorResponse($validator->getMessageBag(), 409);
+
+        $page = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 15;
+        if (request()->has('per_page'))
+            $perPage = request()->per_page;
+        $result = $collection->slice(($page - 1) * $perPage, $perPage)->values();
+        $paginated = new LengthAwarePaginator($result, $collection->count(), $perPage, $page, [
+            'path' => url()->current()
+        ]);
+        //$paginated->appends(request()->all());
+        $collection = $paginated;
+        return $paginated;
+
+    }
+````
+
+- cache response with key equal to URL (with query parameters irrespective to there order as they will be sorted)
+````php
+    protected function cacheResponse(Collection $collection)
+    {
+        $url = request()->url();
+        $queryParams = request()->query();
+        ksort($queryParams);
+        $queryString = http_build_query($queryParams);
+        $fullUrl = "{$url}?{$queryString}";
+
+        return Cache::remember($fullUrl, 30, function () use ($collection) {
+            return $collection;
+        });
+    }
+````

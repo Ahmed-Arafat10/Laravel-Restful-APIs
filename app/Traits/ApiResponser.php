@@ -2,9 +2,13 @@
 
 namespace App\Traits;
 
+use App\Exceptions\customFormValidationException;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 
 trait ApiResponser
 {
@@ -25,6 +29,9 @@ trait ApiResponser
 
     protected function showAll(Collection $collection, $code = 200)
     {
+        $this->filterData($collection);
+        $this->sortData($collection);
+        $this->paginate($collection);
         return $this->successResponse(['data' => $collection, 'code' => $code], $code);
     }
 
@@ -63,4 +70,61 @@ trait ApiResponser
     {
         return $this->successResponse(['message' => $message, 'code' => $code], $code);
     }
+
+    protected function sortData(Collection &$collection)
+    {
+        if (request()->has('sort_by')) {
+            $attribute = request()->sort_by;
+            $isDesc = request()->has('desc');
+            $collection = $collection->sortBy($attribute, null, $isDesc)->values();
+        }
+        return $collection;
+    }
+
+    protected function filterData(Collection &$collection)
+    {
+        $allowedAtt = User::getAttributesArray((new User())->find(1));
+        foreach (request()->query() as $att => $val) {
+            if (key_exists($att, $allowedAtt) && isset($val)) {
+                $collection = $collection->where($att, $val)->values();
+            }
+        }
+        return $collection;
+    }
+
+    protected function paginate(Collection &$collection)
+    {
+        $rules = [
+            'per_page' => 'integer|min:2|max:50'
+        ];
+        $validator = Validator::make(request()->all(), $rules);
+        if ($validator->fails())
+            throw new customFormValidationException($validator, response()); # here throwing an exception MUST be used instead of just returning
+
+        $page = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 15;
+        if (request()->has('per_page'))
+            $perPage = request()->per_page;
+        $result = $collection->slice(($page - 1) * $perPage, $perPage)->values();
+        $paginated = new LengthAwarePaginator($result, $collection->count(), $perPage, $page, [
+            'path' => url()->current()
+        ]);
+        //$paginated->appends(request()->all());
+        $collection = $paginated;
+        return $paginated;
+    }
+
+    protected function cacheResponse(Collection $collection)
+    {
+        $url = request()->url();
+        $queryParams = request()->query();
+        ksort($queryParams);
+        $queryString = http_build_query($queryParams);
+        $fullUrl = "{$url}?{$queryString}";
+
+        return Cache::remember($fullUrl, 30, function () use ($collection) {
+            return $collection;
+        });
+    }
 }
+
