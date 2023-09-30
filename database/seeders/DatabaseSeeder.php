@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
         Category::truncate();
         User::truncate();
 
+        //User::flushEventListeners();
+
         User::factory(100)->create();
         Category::factory(100)->create();
 

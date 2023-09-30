@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\NewUserRegistered;
+use App\Events\UserChangedMailEvent;
 use App\Exceptions\customFormValidationException;
 use App\Http\Controllers\ApiController;
 use App\Models\User;
@@ -14,8 +16,8 @@ class UserController extends ApiController
 {
     public function __construct()
     {
-        $this->middleware(['client.credentials'])->only(['index']);
-        $this->middleware(['auth:api'])->only(['show']);
+        // $this->middleware(['client.credentials'])->only(['index']);
+        // $this->middleware(['auth:api'])->only(['show']);
     }
 
     /**
@@ -23,9 +25,9 @@ class UserController extends ApiController
      */
     public function index()
     {
-        //$user = User::all();
-        $user = User::paginate(10);
-        return $this->showAllPaginate($user);
+        $user = User::all();
+        //$user = User::paginate(10);
+        return $this->showAll($user);
     }
 
 
@@ -53,6 +55,9 @@ class UserController extends ApiController
         $data['verification_token'] = User::generateVerificationCode();
         $data['admin'] = User::REGULAR_USER;
         $user = User::create($data);
+
+        // Dispatch the event
+        event(new NewUserRegistered($user));
 
         return $this->showOne($user, 201);
     }
@@ -88,6 +93,7 @@ class UserController extends ApiController
             $user->verified = User::UNVERIFIED_USER;
             $user->verification_token = User::generateVerificationCode();
             $user->email = $request->email;
+            event(new UserChangedMailEvent($user));
         }
 
         if ($request->has('password'))
@@ -116,5 +122,31 @@ class UserController extends ApiController
         // DANGER: should add an exception if user does not exist
         $user->delete();
         return $this->showOne($user);
+    }
+
+    public function verifyEmail($token)
+    {
+        $user = User::where('verification_token', $token)->firstOrFail();
+
+        $user->verified = User::VERIFIED_USER;
+        $user->verification_token = null;
+
+        $user->save();
+        return $this->showMessage('The account has been verified successfully');
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function verifyEmailResend(User $user)
+    {
+        if ($user->isVerified())
+            return $this->errorResponse('This user is already verified', 409);
+
+        retry(5, function () use ($user) {
+            event(new NewUserRegistered($user));
+        }, 100);
+
+        return $this->showMessage('An Email is re-sent to verify account successfully');
     }
 }

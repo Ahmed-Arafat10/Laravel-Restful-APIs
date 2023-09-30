@@ -58,4 +58,9 @@ trait ApiResponser
         $model = $this->transformData($model, $transformer);
         return $this->successResponse([$model, 'code' => $code], $code);
     }
+
+    protected function showMessage($message, $code = 200)
+    {
+        return $this->successResponse(['message' => $message, 'code' => $code], $code);
+    }
 }

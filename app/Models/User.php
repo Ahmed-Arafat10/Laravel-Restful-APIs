@@ -3,17 +3,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Mail\UseCreatedMail;
 use App\Transformers\UserTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use  HasFactory, Notifiable, SoftDeletes , HasApiTokens;
+    use  HasFactory, Notifiable, SoftDeletes, HasApiTokens;
 
     const VERIFIED_USER = 1;
     const UNVERIFIED_USER = 0;
@@ -47,6 +49,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'verification_token',
+        // 'verification_token',
     ];
 
     /**
@@ -87,5 +90,12 @@ class User extends Authenticatable
     public static function generateVerificationCode()
     {
         return Str::random(40);
+    }
+
+    public static function newUserSendEmail()
+    {
+        User::created(function ($user) {
+            Mail::to($user)->send(new UseCreatedMail($user));
+        });
     }
 }
