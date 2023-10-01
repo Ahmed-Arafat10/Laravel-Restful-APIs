@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,8 +33,10 @@ require __DIR__ . '/auth.php';
 
 
 Route::get('/test', function () {
-    $res = \App\Models\Category::findOrFail(1)
-        ->with('products')
-    ->get(); // danger: search for it
-    dd($res);
+    $category = \App\Models\Category::find(1);
+    $categoriesLinks = [
+
+    ];
+    if (!Cache::get('sda'))
+        echo "yes";
 });

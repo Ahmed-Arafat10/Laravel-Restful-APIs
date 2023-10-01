@@ -6,6 +6,7 @@ use App\Events\NewUserRegistered;
 use App\Events\UserChangedMailEvent;
 use App\Exceptions\customFormValidationException;
 use App\Http\Controllers\ApiController;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -26,8 +27,7 @@ class UserController extends ApiController
     public function index()
     {
         $user = User::all();
-        //$user = User::paginate(10);
-        return $this->showAll($user);
+        return $this->showAll($user, 200, UserResource::class);
     }
 
 
@@ -41,7 +41,9 @@ class UserController extends ApiController
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
         ];
-
+       // $rules = UserResource::validationAttributes($rules);
+        UserResource::originalRequestAtt($request);
+        //dd($rules);
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails())
@@ -55,7 +57,6 @@ class UserController extends ApiController
         $data['verification_token'] = User::generateVerificationCode();
         $data['admin'] = User::REGULAR_USER;
         $user = User::create($data);
-
         // Dispatch the event
         event(new NewUserRegistered($user));
 

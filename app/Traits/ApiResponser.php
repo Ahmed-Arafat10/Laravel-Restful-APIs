@@ -27,11 +27,15 @@ trait ApiResponser
         return response()->json(['error' => $msg, 'code' => $code], $code);
     }
 
-    protected function showAll(Collection $collection, $code = 200)
+    /**
+     * @throws customFormValidationException
+     */
+    protected function showAll(Collection $collection, $code = 200, $resourceClass = null)
     {
-        $this->filterData($collection);
+        $this->filterData($collection, $resourceClass);
         $this->sortData($collection);
         $this->paginate($collection);
+        if ($resourceClass) $collection = $resourceClass::collection($collection);
         return $this->successResponse(['data' => $collection, 'code' => $code], $code);
     }
 
@@ -81,10 +85,11 @@ trait ApiResponser
         return $collection;
     }
 
-    protected function filterData(Collection &$collection)
+    protected function filterData(Collection &$collection, $resourceClass = null)
     {
         $allowedAtt = User::getAttributesArray((new User())->find(1));
         foreach (request()->query() as $att => $val) {
+            if ($resourceClass) $att = $resourceClass::originalAttribute($att);
             if (key_exists($att, $allowedAtt) && isset($val)) {
                 $collection = $collection->where($att, $val)->values();
             }

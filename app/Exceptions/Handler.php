@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Traits\ApiResponser;
+use Fruitcake\Cors\CorsService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

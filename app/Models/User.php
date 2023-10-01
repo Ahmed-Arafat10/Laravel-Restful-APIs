@@ -3,7 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Mail\UseCreatedMail;
+use App\Mail\UserCreatedMail;
 use App\Transformers\UserTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +17,6 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use  HasFactory, Notifiable, SoftDeletes, HasApiTokens;
-
     const VERIFIED_USER = 1;
     const UNVERIFIED_USER = 0;
 
@@ -96,7 +95,7 @@ class User extends Authenticatable
     public static function newUserSendEmail()
     {
         User::created(function ($user) {
-            Mail::to($user)->send(new UseCreatedMail($user));
+            Mail::to($user)->send(new UserCreatedMail($user));
         });
     }
 

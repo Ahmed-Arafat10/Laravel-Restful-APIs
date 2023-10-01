@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class UseCreatedMail extends Mailable
+class UserCreatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -39,7 +39,7 @@ class UseCreatedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.test', with: ['user' => $this->user]
+            markdown: 'emails.test', with: ['user' => $this->Data]
         );
 
     }
