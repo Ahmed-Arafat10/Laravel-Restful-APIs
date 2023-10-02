@@ -12,28 +12,38 @@
 				{
 					"name": "add user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiYzhhY2Q3YjIwNjJhMzIwOWVkZmI1YWU1NTY1ZDE5NmQ4MjViZWI1ZWM5OWQ5M2EwMzMzYzE0Mzg0MDEyNDM2YjExZTViNTNkYmQ3YzMwNTEiLCJpYXQiOjE2OTU1NTU2NTEuNjkwNzI3LCJuYmYiOjE2OTU1NTU2NTEuNjkwNzMsImV4cCI6MTY5NTU1NzQ1MS42NzAwMTcsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.JfB2Pat24ZqzhF3xeDuQbRkD0JNr3mpLswsiWNSYFWCZ7jC7AAvUsvHxo91dZmpFBroRihSV844SnQ1Nn6Kkbgh3V1IFGnsvGOfLG3z_p-r7vQ3Ze7CbFbRPxojjYVYSQYICN7B1c5VtwQpkiNB6fiOcc2GNve5f_6thte-tQ2QOwy-yvprjAZZ1N-1Tip5jr4VhEjXYtehZrM4DXXdEfwGa_c1SGo1IYanRrEJbN28X5hWBpKuTQXvAETibKfHcyS0IM1pHigOQRMwN_WW-Erv62huEGgWJOK_7UblzwEPBHQiasNl2Z_67FI16B_5gRmw7zgWfVo3rR2aHmlGGe3TTp98UPMIsHqUXGXbrRY1iJhI0y1vbtIqwWcN09ojJtcH4pXZ5CLdWyot0XCYMalhDosACviTMyz49ccRgoHBFxoATGqHKQxRSPLA_N5rf4Da_WBWpbGJFPchVJfJLhPh3WqYVe7KrhRxTLqsioe0wWHbL8tpDiit0-QtAHjY32KPKeIXXC8Wf_2HN_4P2y4OBRcvMx7Y9vDl2Xld1yFIN1am15OPxEt7_NbTopv2jkjtBq0z5YpKwiSpWMvQkHrcmhrUuTFEi4GjAE0zsB0w8CA1Q4KJAe2TS_JbWovlr3apaq-8o-QrvgqNSpVIAJtiVZznEm5uHI16Qz_tZHK8",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "name",
+									"key": "Name",
 									"value": "Ahmed",
 									"type": "text"
 								},
 								{
-									"key": "email",
-									"value": "ahmed3212@gmail.com",
+									"key": "Email",
+									"value": "ahmedxarafat010133@gmai2l.com222ss2",
 									"type": "text"
 								},
 								{
-									"key": "password",
+									"key": "Password",
 									"value": "1234567",
 									"type": "text"
 								},
 								{
-									"key": "password_confirmation",
+									"key": "PassCon",
 									"value": "1234567",
 									"type": "text"
 								}
@@ -71,6 +81,11 @@
 								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiNTc1MzZlZTE4MjUzNDczZjVkY2QzNjIwNzdjZDdkNmZkYTdmOGQ5MjVhNDAwM2E0MjAyNmM1NzA5ZWI2OTJjYzM5MjMxMjMzODMyMzNkNTMiLCJpYXQiOjE2OTU1NDkzNDYuNDM5Nzg0LCJuYmYiOjE2OTU1NDkzNDYuNDM5Nzg2LCJleHAiOjE2OTU1NTExNDYuMDM5MTM0LCJzdWIiOiIiLCJzY29wZXMiOltdfQ.hI23c6kY8AQsGzf9IdA0n-i_8fcT7_ShUErYQ2umy6rEHu5BZqq9bYUXk_kFarmv6Vwibuf27QV2qTGQjcSExz2tV9HN-jtgQJh8huiHCiRAg3xag6mwu54VO9NnUe3kVR0arTKWzLfTNhl350Nb_B4Jcg9o5BrQey30BWYqg3fNfH_dVAy6j2FtiZ6SVVa_fUIcP9IVbfIO3SfWJDF0auul76VuwLoB_PHKQCNZfuk8a6lSeFGUbz7YWOv4y4itPBiRnP9YOWSiJPUg3OBpnTkDD_ClAD6mHgTzhhPyaeoSe3IjW8Uv3uCYECsCc26hRGBkPRSPPvLO52VU1YMi216pVqVriJib_qkfRcnfO4_mFv5V2rhunuyv3CO5yIdZ3mkP5BbR1_ocE6cyd38YX60WdIBPg9iepdhw54ALpwwjxuiQZDIXwHgBsnACinR6ZS0ul-bsDCW2hYA2QDAo0T95RMERMHFt39MDFWy54msawbfvpD4xCtGOFAck63bB3pQQyYn-5A8HOKZl0zGlsDl98hR5h0lwkTFQ6M6AQd1jmgBtpPi--8k5wZNbWUmsYSGAwS84w1frNMc18taAfC2GaHsp2N9BvgvqxiInmrDqthkVZvHO_IfQJR4CNEcpq6tvdMl-ggKrVwMWuHJtbD5HS4_mHQ0CuGrPW44Bj-c",
 								"type": "text",
 								"disabled": true
+							},
+							{
+								"key": "Origin",
+								"value": "*",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -88,16 +103,40 @@
 				{
 					"name": "show user by ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiYzhhY2Q3YjIwNjJhMzIwOWVkZmI1YWU1NTY1ZDE5NmQ4MjViZWI1ZWM5OWQ5M2EwMzMzYzE0Mzg0MDEyNDM2YjExZTViNTNkYmQ3YzMwNTEiLCJpYXQiOjE2OTU1NTU2NTEuNjkwNzI3LCJuYmYiOjE2OTU1NTU2NTEuNjkwNzMsImV4cCI6MTY5NTU1NzQ1MS42NzAwMTcsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.JfB2Pat24ZqzhF3xeDuQbRkD0JNr3mpLswsiWNSYFWCZ7jC7AAvUsvHxo91dZmpFBroRihSV844SnQ1Nn6Kkbgh3V1IFGnsvGOfLG3z_p-r7vQ3Ze7CbFbRPxojjYVYSQYICN7B1c5VtwQpkiNB6fiOcc2GNve5f_6thte-tQ2QOwy-yvprjAZZ1N-1Tip5jr4VhEjXYtehZrM4DXXdEfwGa_c1SGo1IYanRrEJbN28X5hWBpKuTQXvAETibKfHcyS0IM1pHigOQRMwN_WW-Erv62huEGgWJOK_7UblzwEPBHQiasNl2Z_67FI16B_5gRmw7zgWfVo3rR2aHmlGGe3TTp98UPMIsHqUXGXbrRY1iJhI0y1vbtIqwWcN09ojJtcH4pXZ5CLdWyot0XCYMalhDosACviTMyz49ccRgoHBFxoATGqHKQxRSPLA_N5rf4Da_WBWpbGJFPchVJfJLhPh3WqYVe7KrhRxTLqsioe0wWHbL8tpDiit0-QtAHjY32KPKeIXXC8Wf_2HN_4P2y4OBRcvMx7Y9vDl2Xld1yFIN1am15OPxEt7_NbTopv2jkjtBq0z5YpKwiSpWMvQkHrcmhrUuTFEi4GjAE0zsB0w8CA1Q4KJAe2TS_JbWovlr3apaq-8o-QrvgqNSpVIAJtiVZznEm5uHI16Qz_tZHK8",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZWRjMDliMDIzMTMwNDRlZmIxNTU2NTFiMDg5YjBkZmIzNGY2NDEyNGIzODVjNDE1ZDM1NDI5ZGU3NzgzYjMxYjJjYjRjOWZiZTlmNjgxM2MiLCJpYXQiOjE2OTU1NTEyOTguOTU4NTE0LCJuYmYiOjE2OTU1NTEyOTguOTU4NTE2LCJleHAiOjE2OTU1NTMwOTguOTI3MzQ4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.sz8uEZVlGX3SxUIWMl3thJmD-bClHxHzPykYA-wZRbzWxhkQJ5En0SWk4_lmgYvDWFGtO67w4rblooxSjAijoTptBWK6yc0xzWJFZUDJ0W5GXMGfXtbHJeJIi3QbpipA9P-SiUfpUzYKFhLvYGrUm5rDcXoB6bhKD7-xIpr8TJ5q7BmnJf_-nvAsLyYAXzr37AOSuN-OPmraRbFvstMXmHBOKe9sjT414fu0iJMCwO0pEdFlSF7leo5W9QrYCZs-Q6KaXUgo2o4jA9dxlniWoDYDHrQ12ET5rB8kO-Ym4UWGjcyLE_uqouCSfV-pKAWgLDoIoMxqU1v85INXCF3A58RzEnRl9YdJ0dor6JbfvAFMhQ28jjHjmIw60Ek5zVGvQ5fwH-XouSqCmLc-ckunHHQ6MXDHrkpzJnTzh-npx4HFivSj_RDpYgdgdw5UtjbinFuss5Uqx-Hv28PBAG5AnSyi36gfkGoKUJTCqOCUd-bcu7oYN8n1ha7qvQj5zF_5FWvsFzLw4WKmCtx4Y8j6xhYol8Y1eNtlPOVem9pqfkf_w6pS48ivWCV3zxI3ACYSJWhmAo2eHbXFFcuTUCzKWy4azOQBSx170a3LFzoLBGf8iIQyY4ZYWGa0mYae2fGyGpOfSZqMe6BK0oFlRCpTujqOrG-jWd7bbODAs9nnRrc",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
-							"raw": "{{URL}}/users/1222",
+							"raw": "{{URL}}/users/1",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"users",
-								"1222"
+								"1"
+							],
+							"query": [
+								{
+									"key": "A",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -110,7 +149,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"name\" : \"Ahmed New\",\r\n   \"email\" : \"ahmed122@gmail.com\",\r\n   \"password\" : \"1234567\",\r\n   \"password_confirmation\" : \"12345672\"\r\n}",
+							"raw": "{\r\n   \"name\" : \"Ahmed New\",\r\n   \"email\" : \"ahmed@gmail.com\",\r\n   \"password\" : \"123456\",\r\n   \"password_confirmation\" : \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -140,13 +179,52 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{URL}}/users/101",
+							"raw": "{{URL}}/users/103",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"users",
-								"101"
+								"103"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify email with token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/verify/MiOy1RMMPpxgkkfU9jQsIXLMXN6gBuAtNxnh8ipM",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"verify",
+								"MiOy1RMMPpxgkkfU9jQsIXLMXN6gBuAtNxnh8ipM"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend verify email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/resend/users/1/verify",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"resend",
+								"users",
+								"1",
+								"verify"
 							]
 						}
 					},
@@ -180,13 +258,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/buyers/101",
+							"raw": "{{URL}}/buyers/10",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"buyers",
-								"101"
+								"10"
 							]
 						}
 					},
@@ -227,6 +305,204 @@
 							"path": [
 								"sellers",
 								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seller transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sellers/51/transactions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sellers",
+								"51",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seller categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sellers/51/categories",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sellers",
+								"51",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seller buyers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sellers/51/buyers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sellers",
+								"51",
+								"buyers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add seller product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "pep",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "yes123",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/My Pictures/Me_2023.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/sellers/54/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sellers",
+								"54",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add seller delete a product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "pep",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "yes123",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/My Pictures/Me_2023.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/sellers/54/products/112",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sellers",
+								"54",
+								"products",
+								"112"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product for a seller",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "quantity",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/My Pictures/photo_2023-05-03_23-22-25.jpg"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/sellers/54/products/113",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sellers",
+								"54",
+								"products",
+								"113"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "2",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -354,6 +630,24 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "delete category by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/101",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								"101"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -378,18 +672,115 @@
 					"response": []
 				},
 				{
-					"name": "show a category by ID",
+					"name": "show a product by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/products/2",
+							"raw": "{{URL}}/products/26",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"products",
-								"2"
+								"26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/24/transactions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"24",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/24/buyers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"24",
+								"buyers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/24/categories",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"24",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add category for a product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/24/categories/99",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"24",
+								"categories",
+								"99"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete attachment of category for a product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/24/categories/98",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"24",
+								"categories",
+								"98"
 							]
 						}
 					},
@@ -472,6 +863,37 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "add new transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/products/26/buyers/2/transactions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"26",
+								"buyers",
+								"2",
+								"transactions"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -488,17 +910,27 @@
 							"formdata": [
 								{
 									"key": "grant_type",
-									"value": "client_credentials",
+									"value": "password",
 									"type": "text"
 								},
 								{
 									"key": "client_id",
-									"value": "3",
+									"value": "4",
 									"type": "text"
 								},
 								{
 									"key": "client_secret",
-									"value": "ZeYbVQm5ntgStBlBfLE4IdWfiUcZ1i66GFPyZ5sx",
+									"value": "IsIcVAGwn6j73mhA6Kr2ufbxqJdCiu64jvbNbjai",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "ahmed@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
 									"type": "text"
 								}
 							]
@@ -515,6 +947,41 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "grant_type",
+						"value": "password_credentials",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
