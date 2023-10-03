@@ -40,7 +40,7 @@ use Laravel\Passport\Http\Controllers\AccessTokenController;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+Route::middleware(['auth:api'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -127,8 +127,10 @@ Route::name('verify-email')->get('users/verify/{token}', [UserController::class,
 Route::name('resend-verify-email')->get('resend/users/{user}/verify', [UserController::class, 'verifyEmailResend']); // fluent route
 
 # now it will use middlewares -> signature/throttle/binding as it is defined in api.php (was defined in kernal.php)
-Route::post('oauth/token', [AccessTokenController::class, 'issueToken']);
-
+//Route::post('oauth/token', [AccessTokenController::class, 'issueToken']);
+//
+//Route::post('oauth/clients', [\Laravel\Passport\Http\Controllers\ClientController::class, 'store']);
+//Route::get(' oauth/authorize', [\Laravel\Passport\Http\Controllers\AuthorizationController::class, 'authorize']);
 # method #1
 //Route::middleware(['auth'])
 //    ->prefix('api')

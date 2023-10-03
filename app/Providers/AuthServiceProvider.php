@@ -32,5 +32,6 @@ class AuthServiceProvider extends ServiceProvider
         Passport::tokensExpireIn(Carbon::now('UTC')->addMinutes(30));
         Passport::refreshTokensExpireIn(Carbon::now('UTC')->addDays(30));
         //
+
     }
 }

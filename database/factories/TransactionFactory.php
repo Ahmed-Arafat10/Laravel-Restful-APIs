@@ -22,7 +22,7 @@ class TransactionFactory extends Factory
         $seller = Seller::has('products')
             ->get()
             ->random();
-        # wrong as ot may return a use that is seller at the same time
+        # wrong as it may return a uses that is seller at the same time
         //$buyer = User::all()->except($seller->id)->random();
         $buyer = User::whereNotIn('id', Product::all('seller_id'))->get()->random();
         return [
