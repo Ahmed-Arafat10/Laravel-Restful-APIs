@@ -121,10 +121,12 @@ Route::resource('transactions.sellers', TransactionSellerController::class)
 
 
 # users
+Route::get('users/me', [UserController::class,'me']);
 Route::resource('users', UserController::class)
     ->except(['create', 'edit']);
 Route::name('verify-email')->get('users/verify/{token}', [UserController::class, 'verifyEmail']); // fluent route
 Route::name('resend-verify-email')->get('resend/users/{user}/verify', [UserController::class, 'verifyEmailResend']); // fluent route
+
 
 # now it will use middlewares -> signature/throttle/binding as it is defined in api.php (was defined in kernal.php)
 //Route::post('oauth/token', [AccessTokenController::class, 'issueToken']);

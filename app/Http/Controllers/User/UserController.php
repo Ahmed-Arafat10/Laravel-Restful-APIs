@@ -18,7 +18,8 @@ class UserController extends ApiController
     public function __construct()
     {
          $this->middleware(['client.credentials'])->only(['store','resend']);
-         $this->middleware(['auth:api','manage-account'])->only(['show','update']);
+         $this->middleware(['auth:api'])->except(['store','verify','resend']);
+         $this->middleware(['auth:api','scope:manage-account'])->only(['show','update']);
         // $this->middleware(['auth:api'])->only(['show']);
     }
 
@@ -116,6 +117,10 @@ class UserController extends ApiController
         return $this->showOne($user);
     }
 
+    public function me(Request $request)
+    {
+        return $this->showOne($request->user());
+    }
     /**
      * Remove the specified resource from storage.
      */
