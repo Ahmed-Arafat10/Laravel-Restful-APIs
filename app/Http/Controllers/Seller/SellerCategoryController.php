@@ -7,7 +7,10 @@ use App\Models\Seller;
 
 class SellerCategoryController extends ApiController
 {
-    public function index(Seller $seller)
+    public function __construct()
+    {
+        $this->middleware(['auth:api','scope:read-general'])->only(['index']);
+    }   public function index(Seller $seller)
     {
         $categories = $seller->products()
             ->whereHas('categories')

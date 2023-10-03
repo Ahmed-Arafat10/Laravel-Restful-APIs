@@ -7,6 +7,11 @@ use App\Models\Buyer;
 
 class BuyerController extends ApiController
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth:api','scope:read-general'])->only(['show']);
+    }
     /**
      * Display a listing of the resource.
      */

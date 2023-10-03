@@ -7,6 +7,10 @@ use App\Models\Seller;
 
 class SellerTransactionController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:api','scope:read-general'])->only(['index']);
+    }
     public function index(Seller $seller)
     {
         $transactions = $seller->products()

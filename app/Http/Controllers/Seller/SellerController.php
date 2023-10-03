@@ -7,6 +7,10 @@ use App\Models\Seller;
 
 class SellerController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:api','scope:read-general'])->only(['show']);
+    }
     /**
      * Display a listing of the resource.
      */

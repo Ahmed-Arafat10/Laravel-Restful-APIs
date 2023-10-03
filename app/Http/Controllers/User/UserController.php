@@ -17,7 +17,8 @@ class UserController extends ApiController
 {
     public function __construct()
     {
-        // $this->middleware(['client.credentials'])->only(['index']);
+         $this->middleware(['client.credentials'])->only(['store','resend']);
+         $this->middleware(['auth:api','manage-account'])->only(['show','update']);
         // $this->middleware(['auth:api'])->only(['show']);
     }
 

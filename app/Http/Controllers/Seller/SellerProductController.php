@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Seller;
 
+use App\Exceptions\customFormValidationException;
 use App\Http\Controllers\ApiController;
 use App\Models\Product;
 use App\Models\Seller;
@@ -14,11 +15,24 @@ use Illuminate\Validation\Rule;
 
 class SellerProductController extends ApiController
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:api', 'scope:manage-products'])->except(['index']);
+    }
+
+    /**
+     * @throws AuthorizationException
+     * @throws customFormValidationException
+     */
     public function index(Seller $seller)
     {
-        $products = $seller->products;
+        if (request()->user()->tokenCan('read-general') ||
+            request()->user()->tokenCan('manage-products]')) {
+            $products = $seller->products;
 
-        return $this->showAll($products);
+            return $this->showAll($products);
+        }
+        throw new AuthorizationException('Invalid scope(s)');
     }
 
     public function store(Request $request, User $seller)
@@ -67,7 +81,7 @@ class SellerProductController extends ApiController
             if ($product->isAvailable() && !$product->categories()->count())
                 return $this->errorResponse('An active product must have at least one category', 409);
         }
-        
+
         if ($request->hasFile('image')) {
             if (Storage::disk('myImg')->exists('img/' . $product->image))
                 Storage::disk('myImg')->delete('img/' . $product->image);
