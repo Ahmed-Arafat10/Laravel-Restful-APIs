@@ -129,7 +129,7 @@ Route::name('resend-verify-email')->get('resend/users/{user}/verify', [UserContr
 
 
 # now it will use middlewares -> signature/throttle/binding as it is defined in api.php (was defined in kernal.php)
-//Route::post('oauth/token', [AccessTokenController::class, 'issueToken']);
+Route::post('oauth/token', [AccessTokenController::class, 'issueToken']);
 //
 //Route::post('oauth/clients', [\Laravel\Passport\Http\Controllers\ClientController::class, 'store']);
 //Route::get(' oauth/authorize', [\Laravel\Passport\Http\Controllers\AuthorizationController::class, 'authorize']);

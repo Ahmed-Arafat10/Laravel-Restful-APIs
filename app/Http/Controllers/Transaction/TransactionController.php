@@ -10,12 +10,16 @@ class TransactionController extends ApiController
     public function __construct()
     {
         $this->middleware(['auth:api','scope:read-general'])->only(['show']);
+
+        $this->middleware(['can:view,transaction'])->only(['show']);
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->allowedAdminAction();
+
         $product = Transaction::paginate(10);
         return $this->showAllPaginate($product);
     }

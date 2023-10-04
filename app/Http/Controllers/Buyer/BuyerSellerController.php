@@ -10,6 +10,8 @@ class BuyerSellerController extends ApiController
     // danger: implement it in postman
     public function index(Buyer $buyer)
     {
+        $this->allowedAdminAction();
+
         //$products = $buyer->transactions->product; // Error as $buyer->transactions returns a collection
         $sellers = $buyer->transactions()
             ->with('product.seller')// eager loading

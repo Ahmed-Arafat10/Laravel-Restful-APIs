@@ -17,10 +17,13 @@ class UserController extends ApiController
 {
     public function __construct()
     {
-         $this->middleware(['client.credentials'])->only(['store','resend']);
-         $this->middleware(['auth:api'])->except(['store','verify','resend']);
-         $this->middleware(['auth:api','scope:manage-account'])->only(['show','update']);
+        $this->middleware(['client.credentials'])->only(['store', 'resend']);
+        $this->middleware(['auth:api'])->except(['store', 'verify', 'resend']);
+        $this->middleware(['auth:api', 'scope:manage-account'])->only(['show', 'update']);
         // $this->middleware(['auth:api'])->only(['show']);
+        $this->middleware(['can:view,user'])->only(['show']);
+        $this->middleware(['can:update,user'])->only(['update']);
+        $this->middleware(['can:delete,user'])->only(['destroy']);
     }
 
     /**
@@ -28,6 +31,8 @@ class UserController extends ApiController
      */
     public function index()
     {
+        $this->allowedAdminAction();
+
         $user = User::all();
         return $this->showAll($user, 200, UserResource::class);
     }
@@ -43,7 +48,7 @@ class UserController extends ApiController
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
         ];
-       // $rules = UserResource::validationAttributes($rules);
+        // $rules = UserResource::validationAttributes($rules);
         UserResource::originalRequestAtt($request);
         //dd($rules);
         $validator = Validator::make($request->all(), $rules);
@@ -105,6 +110,7 @@ class UserController extends ApiController
         if ($request->has('admin')) {
             if (!$user->isVerified())
                 return $this->errorResponse('Only verified users can modify the admin field', 409);
+            $this->allowedAdminAction();
             $user->admin = $request->admin;
         }
 
@@ -121,6 +127,7 @@ class UserController extends ApiController
     {
         return $this->showOne($request->user());
     }
+
     /**
      * Remove the specified resource from storage.
      */

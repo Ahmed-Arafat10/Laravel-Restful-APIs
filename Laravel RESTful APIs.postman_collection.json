@@ -297,6 +297,41 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get categories by buyers ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMCIsImp0aSI6IjEyZTk5ZGMxNTM0ZjFhZDkwODM3OGUwNzdmNTUwNmE3N2M1YTZjNTc2MGFiMGI3ZmM0MjNhZjBmNDkyOTg3N2FlMDYwNjI3NWE3Yzk1YmZlIiwiaWF0IjoxNjk2NDE2MDM0Ljk4NDM1NiwibmJmIjoxNjk2NDE2MDM0Ljk4NDM1OCwiZXhwIjoxNjk2NDE3ODM0Ljk3NDUzOSwic3ViIjoiMjIiLCJzY29wZXMiOlsicmVhZC1nZW5lcmFsIl19.TOBQ3WFcdGtoqQerqXemVanicGFy40rjIL5k45NJroEC7fNKl8ky3j6D5UC37IOD5kwXOsEjWrG9WHFlry4Mb2BuqKNq9LdyZZ9iKIPFbIiRmqolRvoAzOMP8prB7mW7fraSen1BJKbxtoatO-WqdM2fPWVDKqhZirJchJCh7Z3p6XuGkxWAqkdGEymOXFu5t62fIpy1msghz_i9ff6nzYTexg36Y_auzWi0k1-9y5eCOED40HJt4a2fd6KC79bRzS_HI5RC4z2j0qTGZgA6aSCOHgzkQnMK039QYwCGp-3IRxamcJMgx2-Lzjseo0_nznmQ3hR6FmlvpaMAd2bwaSGSoVs1BjbjmZATB7LdNiMleea8xtkPJLcOk_KlVmuPt0snUYMDBrjWwwek55mG-qSa68V3TZP6OAukMt1Y23MVNh22X8qYokA--h9yKA6YGxBth6UgLxzzieBbMQTKFNR3QMuVu_BU55ST3fmMR9yWLVEn1tIDPy49OyELWZc4boELKkQDLY13j9WKIkBrSOuZMpbR5wSaD3rkO98deDinb0VE76024p2uraEaHSeccmzKA5e_FnoKdLtewaT5QAB-BKlrec3LI2_LcG_43l0n9Z1F4zyxMxR_MUBCpB0u2Bq3V20NcD2e-gwKI6jo2lwMuWALO00gsjwBh-mpuIM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/buyers/2444/categories",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"buyers",
+								"2444",
+								"categories"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -942,7 +977,13 @@
 					"name": "generate new client token",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
@@ -963,12 +1004,12 @@
 								},
 								{
 									"key": "username",
-									"value": "ahmedxarafat0101@gmail.com",
+									"value": "rschmeler@example.org",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "12345678",
+									"value": "password",
 									"type": "text"
 								}
 							]
@@ -1132,32 +1173,26 @@
 								},
 								{
 									"key": "username",
-									"value": "ahmedxarafat0101@gmail.com",
+									"value": "rschmeler@example.org",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "12345678",
+									"value": "password",
 									"type": "text"
 								},
 								{
 									"key": "scope",
-									"value": "purchase-product",
-									"type": "text",
-									"disabled": true
+									"value": "read-general",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/oauth/token",
-							"protocol": "http",
+							"raw": "{{URL}}/oauth/token",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "8000",
 							"path": [
 								"oauth",
 								"token"

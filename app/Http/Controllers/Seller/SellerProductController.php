@@ -18,6 +18,11 @@ class SellerProductController extends ApiController
     public function __construct()
     {
         $this->middleware(['auth:api', 'scope:manage-products'])->except(['index']);
+
+        $this->middleware(['can:view,seller'])->only(['index']);
+        $this->middleware(['can:sale,seller'])->only(['store']);
+        $this->middleware(['can:edit-project,seller'])->only(['update']);
+        $this->middleware(['can:delete-project,seller'])->only(['destroy']);
     }
 
     /**

@@ -15,7 +15,8 @@ class ProductBuyerTransactionController extends ApiController
     public function __construct()
     {
         //parent::__construct();
-            $this->middleware(['auth:api', 'scope:purchase-product'])->only(['store']);
+        $this->middleware(['auth:api', 'scope:purchase-product'])->only(['store']);
+        $this->middleware(['can:purchase,buyer'])->only(['store']);
     }
 
     /**

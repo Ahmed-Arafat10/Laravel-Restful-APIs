@@ -90,7 +90,8 @@ class Handler extends ExceptionHandler
     # to validate that it is a request from web not an API
     private function isWebBased($request)
     {
-        return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
+        //return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
+        return $request->acceptsHtml();
     }
 }
 

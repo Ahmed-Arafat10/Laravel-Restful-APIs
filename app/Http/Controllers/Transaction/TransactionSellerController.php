@@ -12,6 +12,8 @@ class TransactionSellerController extends ApiController
     public function __construct()
     {
         $this->middleware(['auth:api','scope:read-general'])->only(['index']);
+
+        $this->middleware(['can:view,transaction'])->only(['index']);
     }
     public function index(Transaction $transaction)
     {

@@ -12,6 +12,7 @@ class BuyerTransactionController extends ApiController
     public function __construct()
     {
         $this->middleware(['auth:api','scope:read-general'])->only(['index']);
+        $this->middleware(['can:purchase,buyer'])->only(['index']);
     }
     // danger: implement it in postman
     public function index(Buyer $buyer)

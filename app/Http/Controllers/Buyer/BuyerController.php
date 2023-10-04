@@ -11,12 +11,15 @@ class BuyerController extends ApiController
     public function __construct()
     {
         $this->middleware(['auth:api','scope:read-general'])->only(['show']);
+        $this->middleware(['can:view,buyer'])->only(['show']);
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->allowedAdminAction();
+
         $buyer = Buyer::has('transactions')->get(); // transactions() is a method in Buyer model
         return $this->showAll($buyer);
     }

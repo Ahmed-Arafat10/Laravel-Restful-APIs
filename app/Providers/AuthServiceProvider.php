@@ -2,9 +2,20 @@
 
 namespace App\Providers;
 
+use App\Models\Buyer;
+use App\Models\Product;
+use App\Models\Seller;
+use App\Models\Transaction;
+use App\Models\User;
+use App\Policies\BuyerPolicy;
+use App\Policies\ProductPolicy;
+use App\Policies\SellerPolicy;
+use App\Policies\TransactionPolicy;
+use App\Policies\UserPolicy;
 use Carbon\Carbon;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,6 +27,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Buyer::class => BuyerPolicy::class,
+        Seller::class => SellerPolicy::class,
+        User::class => UserPolicy::class,
+        Transaction::class => TransactionPolicy::class,
+        Product::class => ProductPolicy::class,
     ];
 
     /**
@@ -40,5 +56,9 @@ class AuthServiceProvider extends ServiceProvider
             'read-general' => 'Read general information like purchasing categories, purchased products, selling products,
             selling products, selling categories, your transactions (purchases and sales)'
         ]);
+
+        Gate::define('admin-action', function (User $user) {
+            return $user->isAdmin();
+        });
     }
 }
